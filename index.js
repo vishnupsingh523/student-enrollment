@@ -26,12 +26,12 @@ function validate()
     }
     else if(!isValidUrl(website.value))
     {
-        alert('Website\n\nURL is INVALID !!!')
+        alert('Website URL is INVALID !!!')
         return false
     }
     else if(!isValidUrl(imglink.value))
     {
-        alert('Image Link\n\nURL is INVALID !!!')
+        alert('Image Link URL is INVALID !!!')
         return false
     }
     else if(genderCount==2)
@@ -121,11 +121,10 @@ const addData = ()=>{
 const showData = ()=>{
     var dataString = sessionStorage.getItem('data')
     var tableString = `
-        <table>
             <thead class="border">
                 <tr>
-                    <th class="border">Description</th>
-                    <th class="border">Image</th>
+                    <th class="des">Description</th>
+                    <th class="image">Image</th>
                 </tr>
             </thead>
             <tbody>
@@ -142,18 +141,22 @@ const showData = ()=>{
             skillString = skillString+' ' + data[i].skills[j]
             content += `
             <tr>
-                <td><h4>${data[i].name}</h4>
-                ${data[i].gender}<br>
-                ${data[i].email}<br>
-                <a href="${data[i].website}" target="_blank">${data[i].website}</a>
-                <br>${skillString}</td>
-                <td align="middle"><img src="${data[i].imglink}"/></td>
+                <td class="des">
+                    <h4>${data[i].name}</h4>
+                    <p>${data[i].gender}</p>
+                    <p>${data[i].email}</p>
+                    <p><a href="${data[i].website}" target="_blank">${data[i].website}</a></p>
+                    <p>${skillString}</p>
+                </td>
+                <td align="middle" class="image">
+                    <img src="${data[i].imglink}"/>
+                </td>
             </tr>
         `
         }
 
     }
     
-    content = content + "</tbody></table>"
+    content = content + "</tbody>"
     document.getElementById('result-table').innerHTML = content
 }
